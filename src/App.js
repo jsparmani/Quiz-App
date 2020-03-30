@@ -1,24 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
+import Question from './Question';
 import './App.css';
 
-function App() {
+const App = () => {
+  // const [ difficulty, setDifficulty] = useState("easy");
+  // const [ search, setSearch ] = useState("");
+  const [ questions, setQuestions ] = useState([]);
+
+  useEffect( () => {
+    getQuestions();
+  },[]);
+
+const getQuestions = async () => {
+    const response = await fetch(`https://opentdb.com/api.php?amount=10&category=14&difficulty=easy&type=multiple`)
+    const data = await response.json();
+    setQuestions(data.results);
+    console.log(data.results);
+  }
+
+  //const updateSearch = e => {
+    //setSearch(e.target.value);
+ // }
+
+    // const getSearch = e => {
+    //   e.preventDefault();
+    //   setDifficulty(search);
+    //   setSearch('');
+    // }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <form className="difficulty-form" >
+     <input className="difficulty-level" type="text" />
+     <button  className="search-button" type="submit"> Search </button>
+     </form>
+     {questions.map(question => (
+       <Question 
+       questions={question.question}
+       options={ question.incorrect_answers, question.correct_answer}
+       />
+     ))};
     </div>
   );
 }
