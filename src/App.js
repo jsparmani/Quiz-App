@@ -29,6 +29,8 @@ const App = () => {
     //   setDifficulty(search);
     //   setSearch('');
     // }
+
+    
     return (
         <div className="App">
             <form className="difficulty-form">
@@ -41,10 +43,8 @@ const App = () => {
             {questions.map(question => (
                 <Question
                     questions={question.question}
-                    options={[
-                        question.correct_answer,
-                        question.incorrect_answers
-                    ]}
+                    correctAnswer={question.correct_answer}
+                    incorrectAnswer={question.incorrect_answers}
                 />
             ))}
             ;
