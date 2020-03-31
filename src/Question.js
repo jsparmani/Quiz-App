@@ -1,14 +1,12 @@
 import React, {useEffect} from "react";
 
-export const Question = ({questions, correctAnswer, incorrectAnswer}) => {
+export const Question = ({questions, correctAnswer, incorrectAnswers}) => {
     // useEffect(() => {
-       
+    //     console.log(correctAnswer, incorrectAnswers);
     // }, []);
 
-    var arr = [{incorrectAnswer}]
-    var options = arr.push({correctAnswer}, " ")
-    //console.log(options)
-    //shuffle(options)
+    let options = [...incorrectAnswers, correctAnswer];
+
     return (
         <div>
             <p>Question: {questions}</p>

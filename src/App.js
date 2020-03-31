@@ -17,7 +17,7 @@ const App = () => {
         );
         const data = await response.json();
         setQuestions(data.results);
-        console.log(data.results);
+        // console.log(data.results);
     };
 
     //const updateSearch = e => {
@@ -30,7 +30,6 @@ const App = () => {
     //   setSearch('');
     // }
 
-    
     return (
         <div className="App">
             <form className="difficulty-form">
@@ -44,7 +43,7 @@ const App = () => {
                 <Question
                     questions={question.question}
                     correctAnswer={question.correct_answer}
-                    incorrectAnswer={question.incorrect_answers}
+                    incorrectAnswers={question.incorrect_answers}
                 />
             ))}
             ;
